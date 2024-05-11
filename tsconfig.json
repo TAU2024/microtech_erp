@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "types": ["cypress"],
+    "strict": true
+  }
+  // ,
+  // "include": [
+  //   "src/**/*.ts",
+  //   "node_modules/@types"
+  // ]
+}
+
+
+
+
