@@ -13,7 +13,7 @@ describe("Verify that all the components exist on the Login page", () => {
     // LoginPage.checkEmailLabel('Email');
     // LoginPage.inputEmail(mail);
     LoginPage.checkUserNameLabel("Username");
-    LoginPage.inputUserName(AuthData.mail);
+    LoginPage.inputUserName(AuthData.tempMail);
     LoginPage.checkPasswordLabel("Password");
     LoginPage.inputPassword(AuthData.pass);
     LoginPage.checkUserForgetPasswordLink("Forgot password ?");
@@ -23,7 +23,7 @@ describe("Verify that all the components exist on the Login page", () => {
   }),
     it("Ar", () => {
       LoginPage.visit();
-      LoginPage.checkLangButton();
+      LoginPage.clickLangButton();
       LoginPage.getPageHeader("تسجيل الدخول");
       LoginPage.getPageHeaderPara("قم بتسجيل حساب جديد لأول مرة");
       LoginPage.getPageSecHeader();
@@ -31,7 +31,7 @@ describe("Verify that all the components exist on the Login page", () => {
     // LoginPage.checkEmailLabel('Email');
     // LoginPage.inputEmail(mail);
     LoginPage.checkUserNameLabel("اسم المستخدم");
-    LoginPage.inputUserName(AuthData.mail);
+    LoginPage.inputUserName(AuthData.tempMail);
       LoginPage.checkPasswordLabel("كلمة المرور");
       LoginPage.inputPassword(AuthData.pass);
       LoginPage.checkUserForgetPasswordLink("هل نسيت كلمة السر ?");
