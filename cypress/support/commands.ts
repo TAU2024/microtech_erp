@@ -35,6 +35,37 @@
 //     }
 //   }
 // }
+// cypress/support/commands.ts
+// cypress/support/commands.ts
+
+
+// cypress/support/index.d.ts
+declare namespace Cypress {
+  interface Chainable<Subject = any> {
+    /**
+     * Custom command to retrieve login response from local storage.
+     * Usage: cy.getLoginResponse()
+     */
+    getLoginResponse: () => Chainable<LoginResponse | null>;
+  }
+}
+
+// types.d.ts
+interface LoginResponse {
+  accessToken: string;
+  // other properties of your login response if any
+}
+
+Cypress.Commands.add('getLoginResponse', () => {
+  cy.window().then((win) => {
+    const storedLoginResponse = win.localStorage.getItem('loginResponse');
+    // Use type assertion to assert that storedLoginResponse is a string
+    const loginResponse: LoginResponse | null = JSON.parse(storedLoginResponse as string);
+    return loginResponse;
+  });
+});
+
+
 declare namespace Cypress {
   interface Chainable<Subject> {
     checkImageVisibilityBySrc(imgSrc: string): Chainable<any>;
@@ -44,6 +75,10 @@ declare namespace Cypress {
 Cypress.Commands.add('checkImageVisibilityBySrc', (imgSrc) => {
     cy.get(`img[src='${imgSrc}']`).should('be.visible');
   });
+
+
+
+
   
 
 

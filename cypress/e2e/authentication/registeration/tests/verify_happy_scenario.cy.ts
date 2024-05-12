@@ -9,7 +9,7 @@ describe("Verify Happy Scenario Registeration", () => {
     implemntNormalRegSteps();
     cy.get("h4").contains("تم ارسال ايميل التاكيد");
     cy.get("p").contains("برجاء مراجعة بريدك الالكترونى");
-    cy.get("p.m-0").should("contain.text", AuthData.mail);
+    cy.get("p.m-0").should("contain.text", AuthData.tempMail);
   });
   it("VerifyHappyScenarioRegisterationTestEN", () => {
     RegisterationPage.clickLangButton();
@@ -17,12 +17,12 @@ describe("Verify Happy Scenario Registeration", () => {
     implemntNormalRegSteps();
     cy.get("h4").contains(/Verification Email Sent/i);
     cy.get("p").contains(/Check Your Email/i);
-    cy.get("p.m-0").should("contain.text", AuthData.mail);
+    cy.get("p.m-0").should("contain.text", AuthData.tempMail);
   });
 });
 function implemntNormalRegSteps(){
   RegisterationPage.typeFullName(AuthData.fullName);
-  RegisterationPage.inputEmail(AuthData.mail);
+  RegisterationPage.inputEmail(AuthData.tempMail);
   RegisterationPage.clickDropDownCountryList();
   RegisterationPage.inputCountry(AuthData.country);
   RegisterationPage.inputPassword(AuthData.pass);
