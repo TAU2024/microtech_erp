@@ -1,6 +1,7 @@
 import { values } from "cypress/types/lodash";
 import { RegisterationPage } from "../../pages/registerPage";
 import { AuthData } from "../../../data/auth_data";
+import { checkISRequiredMsg } from "./functions/is_required_message";
 
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
@@ -117,26 +118,20 @@ describe("Password Field Tests", () => {
       });
   });
   it("To Verify Password is Required Message  Arabic", () => {
-    cy.get("#inputPassword").clear().type('{enter}');
-    cy.get("span").contains('هذا الحقل مطلوب').should('be.visible');
-    cy.get("#inputPassword").clear();
+    checkISRequiredMsg("#inputPassword", false);
   });
   it("To Verify Password is Required Message English", () => {
     RegisterationPage.clickLangButton();
-    cy.get("#inputPassword").clear().type('{enter}');
-    cy.get("span").contains('Field is required').should('be.visible');
-    cy.get("#inputPassword").clear();
+    checkISRequiredMsg("#inputPassword", true);
   });
   it("To Verify Confirm Password is Required Message  Arabic", () => {
-    cy.get("#inputConfirmPassword").clear().type('{enter}');
-    cy.get("span").contains('هذا الحقل مطلوب').should('be.visible');
-    cy.get("#inputConfirmPassword").clear();
+    checkISRequiredMsg("#inputConfirmPassword", false);
   });
+
   it("To Verify Confirm Password is Required Message English", () => {
     RegisterationPage.clickLangButton();
-    cy.get("#inputConfirmPassword").clear().type('{enter}');
-    cy.get("span").contains('Field is required').should('be.visible');
-    cy.get("#inputConfirmPassword").clear();
+    checkISRequiredMsg("#inputConfirmPassword", true);
   });
+
 });
 

@@ -1,36 +1,33 @@
 import { AuthData } from "../../../data/auth_data";
 import { RegisterationPage } from "../../pages/registerPage";
-beforeEach("", () => {
-  RegisterationPage.visit();
-});
-
-
+import { checkISRequiredMsg } from "./functions/is_required_message";
 
 describe("Verify Email component Status on the Registerion page", () => {
+  beforeEach("Visit Registeration Page", () => {
+    RegisterationPage.visit();
+  });
   it("should verify the presence of the red star symbol next to the label title", () => {
     cy.get('label[for="Password"]').should("contain", "*");
   });
   it("To Verify Email is Required Message Arabic", () => {
-    cy.get("#FullName").clear().type('{enter}');
-    cy.get("span").contains('هذا الحقل مطلوب').should('be.visible');
+    checkISRequiredMsg("#FullName", false);
   });
   it("To Verify Email is Required Message English", () => {
     RegisterationPage.clickLangButton();
-    cy.get("#FullName").clear().type('{enter}');
-    cy.get("span").contains('Field is required').should('be.visible');
+    checkISRequiredMsg("#FullName", true);
   });
   it("checkEmailRegExFormatEn", () => {
     RegisterationPage.clickLangButton();
     RegisterationPage.checkEmailLabel("Email");
-    RegisterationPage.inputEmail(AuthData.mail);
+    RegisterationPage.inputEmail(AuthData.tempMail);
   }),
     it("checkEmailRegExFormatAr", () => {
       RegisterationPage.checkEmailLabel("البريد الالكترونى");
-      RegisterationPage.inputEmail(AuthData.mail);
+      RegisterationPage.inputEmail(AuthData.tempMail);
     });
   it("checkRegisterationWithUsedEmail", () => {
     RegisterationPage.clickLangButton();
     RegisterationPage.checkEmailLabel("Email");
-    RegisterationPage.inputEmail(AuthData.usedMail);
+    RegisterationPage.inputEmail(AuthData.usedmail1);
   });
 });

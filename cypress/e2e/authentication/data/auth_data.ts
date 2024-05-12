@@ -1,7 +1,9 @@
 export class AuthData {
   static loginUrl ="https://intmicrotec.neat-url.com:2006/bussinessowners/users/42";
+  static registerationUrl="https://intmicrotec.neat-url.com:2004/Register";
   static logoImg = "/assets/img/logo.webp";
   static fullName = "moah mmn";
+  static emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   static tempMail="pemedah.fadimam@jollyfree.com";
   static usedmail1 = "kepori7824@ahieh.com";
   static usedMail2 = "moo0507test@moo.com";

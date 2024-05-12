@@ -15,7 +15,7 @@ describe("Verify that all the components exist on the Register page", () => {
     RegisterationPage.getPageSecHeader();
     RegisterationPage.checkFullNameLabel("Full Name");
     RegisterationPage.typeFullName(AuthData.fullName);
-    RegisterationPage.inputEmail(AuthData.mail);
+    RegisterationPage.inputEmail(AuthData.tempMail);
     RegisterationPage.checkCountryLabel("Country");
     RegisterationPage.clickDropDownCountryList();
     RegisterationPage.inputCountry(AuthData.country);
@@ -47,7 +47,7 @@ describe("Verify that all the components exist on the Register page", () => {
       RegisterationPage.checkFullNameLabel("الاسم بالكامل");
       RegisterationPage.typeFullName(AuthData.fullName);
       RegisterationPage.checkEmailLabel("البريد الالكترونى");
-      RegisterationPage.inputEmail(AuthData.mail);
+      RegisterationPage.inputEmail(AuthData.tempMail);
       RegisterationPage.checkCountryLabel("الدولة");
       RegisterationPage.clickDropDownCountryList();
       RegisterationPage.inputCountry(AuthData.country);

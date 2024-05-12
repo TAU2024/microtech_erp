@@ -1,5 +1,8 @@
 {
   "name": "ERP_MicroTec_Cypress",
+  "scripts": {
+    "cy:open":"npx cypress open"
+  },
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

@@ -1,6 +1,8 @@
+import { AuthData } from "../../data/auth_data";
+
 export class RegisterationPage {
   static visit() {
-    cy.visit("https://intmicrotec.neat-url.com:2004/Register");
+    cy.visit(AuthData.registerationUrl);
   }
   static clickLangButton() {
     cy.get("a.lang-btn").eq(0).click({ force: true });
@@ -29,10 +31,13 @@ export class RegisterationPage {
     cy.get("label").contains(label);
   }
   static inputEmail(mail: string) {
-    cy.get("#email").clear().type(mail).invoke('val').then((text) => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      expect(text).to.match(emailRegex);
-    });
+    cy.get("#email")
+      .clear()
+      .type(mail)
+      .invoke("val")
+      .then((text) => {
+        expect(text).to.match(AuthData.emailRegex);
+      });
   }
 
   static checkCountryLabel(CountryLabel: string) {

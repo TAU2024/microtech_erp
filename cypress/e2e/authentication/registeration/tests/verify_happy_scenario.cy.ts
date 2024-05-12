@@ -1,26 +1,26 @@
 import { AuthData } from "../../data/auth_data";
 import { RegisterationPage } from "../pages/registerPage";
+
 describe("Verify Happy Scenario Registeration", () => {
-  beforeEach("visit",()=>{
+  beforeEach("visit", () => {
     RegisterationPage.visit();
   }),
-  it("VerifyHappyScenarioRegisterationTestAr", () => {
-    RegisterationPage.clickRegisterationButton("سجل الان");
-    implemntNormalRegSteps();
-    cy.get("h4").contains("تم ارسال ايميل التاكيد");
-    cy.get("p").contains("برجاء مراجعة بريدك الالكترونى");
-    cy.get("p.m-0").should("contain.text", AuthData.tempMail);
-  });
+    it("VerifyHappyScenarioRegisterationTestAr", () => {
+      RegisterationPage.clickRegisterationButton("سجل الان");
+      implemntNormalRegSteps();
+      validateRegisteration(
+        "تم ارسال ايميل التاكيد",
+        "برجاء مراجعة بريدك الالكترونى"
+      );
+    });
   it("VerifyHappyScenarioRegisterationTestEN", () => {
     RegisterationPage.clickLangButton();
     RegisterationPage.clickRegisterationButton("Register Now");
     implemntNormalRegSteps();
-    cy.get("h4").contains(/Verification Email Sent/i);
-    cy.get("p").contains(/Check Your Email/i);
-    cy.get("p.m-0").should("contain.text", AuthData.tempMail);
+    validateRegisteration(/Verification Email Sent/i, /Check Your Email/i);
   });
 });
-function implemntNormalRegSteps(){
+function implemntNormalRegSteps() {
   RegisterationPage.typeFullName(AuthData.fullName);
   RegisterationPage.inputEmail(AuthData.tempMail);
   RegisterationPage.clickDropDownCountryList();
@@ -32,3 +32,8 @@ function implemntNormalRegSteps(){
   RegisterationPage.confirmCheckBox();
 }
 
+function validateRegisteration(headerStr: any, paraString: any) {
+  cy.get("h4").contains(headerStr);
+  cy.get("p").contains(paraString);
+  cy.get("p.m-0").should("contain.text", AuthData.tempMail);
+}
