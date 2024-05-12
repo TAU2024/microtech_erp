@@ -1,7 +1,7 @@
 export class AuthData {
   static logoImg = "/assets/img/logo.webp";
   static fullName = "Mohamed Said";
-  static mail = "moo05071test2@moo.com";
+  static mail = "kepori7824@ahieh.com";
   static usedMail = "moo0507test@moo.com";
   static pass = "123Ad*98dd";
   static diffPassMsg= "تأكد من تطابق كلمتي المرور";
