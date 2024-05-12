@@ -94,26 +94,49 @@ describe("Password Field Tests", () => {
   });
   it("should verify the appearance of a message if confirm password is different", () => {
     const password = "Test123!";
-    const confirmPassword = "DifferentPassword";
-    cy.get('input[name="password"]').clear().type(password+'{enter}');
-    cy.get('input[name="confirmPassword"]').clear().type(confirmPassword+'{enter}');
-    cy.get('span#inputConfirmPassword-error').invoke('val').then((val)=>{
-      expect(val).to.have.value(AuthData.diffPassMsg);
-    });
-    // cy.contains(AuthData.diffPassMsg).should(
-    //   "be.visible"
-    // );
+    const confirmPassword = "DifferentPassword123*";
+    cy.get('input[name="password"]').clear().type(password).type('{enter}');
+    cy.get('input[name="confirmPassword"]').clear().type(confirmPassword).type('{enter}');
+    cy.get('span#inputConfirmPassword').should('be.visible');
+    // cy.get('span#inputConfirmPassword-error').invoke('val').then((val) => {
+    //   expect(val).to.have.value(AuthData.diffPassMsg);
+    // });
+    cy.contains(AuthData.diffPassMsg).should(
+      "be.visible"
+    );
   });
   it("should verify that the password is encrypted when entered", () => {
     const password = "Test123!";
     cy.get('input[name="password"]').clear()
       .type(password);
-      cy.get('input[name="password"]')
+    cy.get('input[name="password"]')
       .clear()
       .invoke("val")
       .then((enteredPassword) => {
         expect(enteredPassword).not.to.equal(password);
       });
+  });
+  it("To Verify Password is Required Message  Arabic", () => {
+    cy.get("#inputPassword").clear().type('{enter}');
+    cy.get("span").contains('هذا الحقل مطلوب').should('be.visible');
+    cy.get("#inputPassword").clear();
+  });
+  it("To Verify Password is Required Message English", () => {
+    RegisterationPage.clickLangButton();
+    cy.get("#inputPassword").clear().type('{enter}');
+    cy.get("span").contains('Field is required').should('be.visible');
+    cy.get("#inputPassword").clear();
+  });
+  it("To Verify Confirm Password is Required Message  Arabic", () => {
+    cy.get("#inputConfirmPassword").clear().type('{enter}');
+    cy.get("span").contains('هذا الحقل مطلوب').should('be.visible');
+    cy.get("#inputConfirmPassword").clear();
+  });
+  it("To Verify Confirm Password is Required Message English", () => {
+    RegisterationPage.clickLangButton();
+    cy.get("#inputConfirmPassword").clear().type('{enter}');
+    cy.get("span").contains('Field is required').should('be.visible');
+    cy.get("#inputConfirmPassword").clear();
   });
 });
 

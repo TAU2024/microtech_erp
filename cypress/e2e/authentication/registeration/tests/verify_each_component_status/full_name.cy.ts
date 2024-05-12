@@ -8,6 +8,17 @@ describe("Verify Full Name component Status on the Registerion page", () => {
   it("should verify the presence of the red star symbol next to the label title", () => {
     cy.get('label[for="Password"]').should("contain", "*");
   });
+  it("To Verify FullName is Required Message Arabic", () => {
+    cy.get("#FullName").clear().type('{enter}');
+    cy.get("span").contains('هذا الحقل مطلوب').should('be.visible');
+    cy.get("#FullName").clear();
+  });
+  it("To Verify FullName is Required Message English", () => {
+    RegisterationPage.clickLangButton();
+    cy.get("#FullName").clear().type('{enter}');
+    cy.get("span").contains('Field is required').should('be.visible');
+    cy.get("#FullName").clear();
+  });
   it("En", () => {
     RegisterationPage.clickLangButton();
     RegisterationPage.checkFullNameLabel("Full Name");
@@ -15,7 +26,7 @@ describe("Verify Full Name component Status on the Registerion page", () => {
     RegisterationPage.typeFullName(AuthData.fullNameUpper);
     RegisterationPage.typeFullName(AuthData.fullNameE100);
   }),
-    it.only("Ar", () => {
+    it("Ar", () => {
       RegisterationPage.checkFullNameLabel("الاسم بالكامل");
       RegisterationPage.typeFullName(AuthData.fullNameLower);
       RegisterationPage.typeFullName(AuthData.fullNameUpper);

@@ -19,4 +19,17 @@ describe("Verify Phone component Status on the Registerion page", () => {
       RegisterationPage.checkPhoneLabel("الهاتف");
       RegisterationPage.inputPhoneNumber(AuthData.phone);
     });
+
+
+    it("To Verify Confirm Password is Required Message  Arabic", () => {
+      cy.get("#mobileNumber").clear().type('{enter}');
+      cy.get("span").contains('هذا الحقل مطلوب').should('be.visible');
+      cy.get("#inputConfirmPassword").clear();
+    });
+    it("To Verify Confirm Password is Required Message English", () => {
+      RegisterationPage.clickLangButton();
+      cy.get("#mobileNumber").clear().type('{enter}');
+      cy.get("span").contains('Field is required').should('be.visible');
+      cy.get("#inputConfirmPassword").clear();
+    });
 });

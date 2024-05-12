@@ -3,8 +3,10 @@ import { RegisterationPage } from "../pages/registerPage";
 
 
 describe("Verify that all the components exist on the Register page", () => {
-  it("En", () => {
+  beforeEach("", () => {
     RegisterationPage.visit();
+  });
+  it("En", () => {
     RegisterationPage.clickLangButton();
     RegisterationPage.getPageHeader("Register");
     RegisterationPage.getPageHeaderPara(
@@ -68,4 +70,5 @@ describe("Verify that all the components exist on the Register page", () => {
       RegisterationPage.confirmCheckBox();
       RegisterationPage.checkRegisterationButton("سجل الان");
     });
+
 });
