@@ -1,7 +1,7 @@
 {
   "name": "ERP_MicroTec_Cypress",
   "scripts": {
-    "cy:open":"npx cypress open"
+    "cy:open": "npx cypress open"
   },
   "version": "1.0.0",
   "main": "index.js",
@@ -10,8 +10,11 @@
     "@cypress/webpack-preprocessor": "^6.0.1",
     "@types/cypress": "^1.1.3",
     "@types/faker": "^6.6.9",
+    "@types/node": "^20.12.11",
     "cypress": "^13.8.1",
     "typescript": "^5.4.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
 }

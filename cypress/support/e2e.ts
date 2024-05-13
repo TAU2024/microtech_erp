@@ -14,7 +14,20 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+
+// import { loginAndGetTokenWeb } from './functions/web/loginAndGetToken_web';
+// import { LoginPage } from '../e2e/authentication/login/pages/loginPage';
+// import './commands'
+// before(()=>{
+//     cy.origin('https://intmicrotec.neat-url.com:2010', () => {
+//         LoginPage.visit();
+//         cy.wait(1000);
+//       });
+
+// });
+// before(() => {
+//     loginAndGetTokenWeb();
+// });
