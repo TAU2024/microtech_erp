@@ -38,6 +38,48 @@
 // cypress/support/commands.ts
 // cypress/support/commands.ts
 
+// commands.ts
+
+declare namespace Cypress {
+  interface Chainable<Subject> {
+    getInitialCardCount(
+      gridSelector: string,
+      itemSelector: string
+    ): Chainable<any>;
+  }
+}
+
+Cypress.Commands.add(
+  "getInitialCardCount",
+  (gridSelector: string, itemSelector: string) => {
+    cy.get(gridSelector)
+      .find(itemSelector)
+      .its("length")
+      .then((initialCount) => {
+        cy.wrap(initialCount).as("initialCardCount");
+      });
+  }
+);
+
+declare namespace Cypress {
+  interface Chainable<Subject> {
+    getUpdatedCardCount(
+      gridSelector: string,
+      itemSelector: string
+    ): Chainable<any>;
+  }
+}
+Cypress.Commands.add(
+  "getUpdatedCardCount",
+  (gridSelector: string, itemSelector: string) => {
+    cy.get(gridSelector)
+      .find(itemSelector)
+      .its("length")
+      .then((updatedCount) => {
+        cy.wrap(updatedCount).as("updatedCardCount");
+      });
+  }
+);
 
 // cypress/support/index.d.ts
 declare namespace Cypress {
@@ -56,15 +98,16 @@ interface LoginResponse {
   // other properties of your login response if any
 }
 
-Cypress.Commands.add('getLoginResponse', () => {
+Cypress.Commands.add("getLoginResponse", () => {
   cy.window().then((win) => {
-    const storedLoginResponse = win.localStorage.getItem('loginResponse');
+    const storedLoginResponse = win.localStorage.getItem("loginResponse");
     // Use type assertion to assert that storedLoginResponse is a string
-    const loginResponse: LoginResponse | null = JSON.parse(storedLoginResponse as string);
+    const loginResponse: LoginResponse | null = JSON.parse(
+      storedLoginResponse as string
+    );
     return loginResponse;
   });
 });
-
 
 declare namespace Cypress {
   interface Chainable<Subject> {
@@ -72,14 +115,6 @@ declare namespace Cypress {
   }
 }
 
-Cypress.Commands.add('checkImageVisibilityBySrc', (imgSrc) => {
-    cy.get(`img[src='${imgSrc}']`).should('be.visible');
-  });
-
-
-
-
-  
-
-
-
+Cypress.Commands.add("checkImageVisibilityBySrc", (imgSrc) => {
+  cy.get(`img[src='${imgSrc}']`).should("be.visible");
+});

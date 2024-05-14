@@ -1,3 +1,8 @@
+let _accessToken = "";
+export function getAccessToken() {
+    return _accessToken;
+}
+
 export function validateLogin() {
     cy.window().then((win) => {
         const storedLoginResponse = win.localStorage.getItem("loginResponse");
@@ -6,6 +11,7 @@ export function validateLogin() {
         ) as LoginResponse;
         const accessToken = loginResponse.accessToken;
         console.log("*****loginResponse.accessToken --- " + accessToken);
+        _accessToken = accessToken;
     });
     cy.get("span.p-menuitem-text");
     cy.get("div.card_empty_subdomain");
